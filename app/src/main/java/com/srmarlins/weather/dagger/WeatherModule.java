@@ -14,7 +14,10 @@ import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
 import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.moshi.MoshiConverterFactory;
@@ -46,8 +49,19 @@ public final class WeatherModule {
     OkHttpClient provideOkHttpClient(Application application) {
         File cacheDir = new File(application.getCacheDir(), "http");
         Cache cache = new Cache(cacheDir, CACHE_SIZE);
+        Interceptor interceptor = new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request original = chain.request();
+                Request request = original.newBuilder()
+                        .build();
+                String body = chain.proceed(request).body().string();
+                return chain.proceed(request);
+            }
+        };
         return new OkHttpClient.Builder()
                 .cache(cache)
+                .addInterceptor(interceptor)
                 .build();
     }
 

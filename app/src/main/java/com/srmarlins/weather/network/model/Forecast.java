@@ -20,7 +20,7 @@ public class Forecast {
         return code;
     }
 
-    protected void setCode(int code) {
+    public void setCode(int code) {
         this.code = code;
         forecastConditionIconURL = "http://l.yimg.com/a/i/us/we/52/" + code + ".gif";
     }

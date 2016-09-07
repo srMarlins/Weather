@@ -14,10 +14,6 @@ public class WeatherInfo {
     private WeatherItem item;
 
 
-    public WeatherInfo() {
-
-    }
-
     public String getTitle() {
         return title;
     }

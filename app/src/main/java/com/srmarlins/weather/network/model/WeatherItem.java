@@ -1,5 +1,7 @@
 package com.srmarlins.weather.network.model;
 
+import com.squareup.moshi.Json;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +12,10 @@ import java.util.List;
 public class WeatherItem {
     private String title;
     private String lat;
-    private String Long;
+    @Json(name = "long")
+    private String lon;
     private String pubDate;
+    private Condition condition;
     private List<Forecast> forecast = new ArrayList<>();
 
     public String getTitle() {
@@ -30,12 +34,12 @@ public class WeatherItem {
         this.lat = lat;
     }
 
-    public String getLong() {
-        return Long;
+    public String getLon() {
+        return lon;
     }
 
-    public void setLong(String aLong) {
-        Long = aLong;
+    public void setLon(String lon) {
+        this.lon = lon;
     }
 
     public String getPubDate() {
@@ -52,5 +56,13 @@ public class WeatherItem {
 
     public void setForecast(List<Forecast> forecast) {
         this.forecast = forecast;
+    }
+
+    public Condition getCondition() {
+        return condition;
+    }
+
+    public void setCondition(Condition condition) {
+        this.condition = condition;
     }
 }
