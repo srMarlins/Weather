@@ -76,7 +76,7 @@ public final class WeatherModule {
 
     @Provides
     @Singleton
-    Application provideApplication(){
+    Application provideApplication() {
         return this.application;
     }
 }

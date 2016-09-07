@@ -1,76 +1,55 @@
 package com.srmarlins.weather.network.model;
 
-import android.graphics.Bitmap;
-
 public class Forecast {
-	private String forecastDay;
-		private String forecastDate;
-		private int forecastCode;
-		private int forecastTempHigh;
-		private int forecastTempLow;
-		private String forecastConditionIconURL;
-		private Bitmap forecastConditionIcon;
-		private String forecastText;
+    private String date;
+    private int code;
+    private int high;
+    private int low;
+    private String forecastConditionIconURL;
+    private String text;
 
-		public Bitmap getForecastConditionIcon() {
-			return forecastConditionIcon;
-		}
+    public String getDate() {
+        return date;
+    }
 
-		protected void setForecastConditionIcon(Bitmap forecastConditionIcon) {
-			this.forecastConditionIcon = forecastConditionIcon;
-		}
+    protected void setDate(String date) {
+        this.date = date;
+    }
 
-		public String getForecastDay() {
-			return forecastDay;
-		}
+    public int getCode() {
+        return code;
+    }
 
-		protected void setForecastDay(String forecastDay) {
-			this.forecastDay = forecastDay;
-		}
+    protected void setCode(int code) {
+        this.code = code;
+        forecastConditionIconURL = "http://l.yimg.com/a/i/us/we/52/" + code + ".gif";
+    }
 
-		public String getForecastDate() {
-			return forecastDate;
-		}
+    public int getHigh() {
+        return high;
+    }
 
-		protected void setForecastDate(String forecastDate) {
-			this.forecastDate = forecastDate;
-		}
+    protected void setHigh(int high) {
+        this.high = high;
+    }
 
-		public int getForecastCode() {
-			return forecastCode;
-		}
+    public int getLow() {
+        return low;
+    }
 
-		protected void setForecastCode(int forecastCode) {
-			this.forecastCode = forecastCode;
-			forecastConditionIconURL = "http://l.yimg.com/a/i/us/we/52/" + forecastCode + ".gif";
-		}
+    protected void setLow(int low) {
+        this.low = low;
+    }
 
-		public int getForecastTempHigh() {
-			return forecastTempHigh;
-		}
+    public String getForecastConditionIconURL() {
+        return forecastConditionIconURL;
+    }
 
-		protected void setForecastTempHigh(int forecastTempHigh) {
-			this.forecastTempHigh = forecastTempHigh;
-		}
+    public String getText() {
+        return text;
+    }
 
-		public int getForecastTempLow() {
-			return forecastTempLow;
-		}
-
-		protected void setForecastTempLow(int forecastTempLow) {
-			this.forecastTempLow = forecastTempLow;
-		}
-
-		public String getForecastConditionIconURL() {
-			return forecastConditionIconURL;
-		}
-
-		public String getForecastText() {
-			return forecastText;
-		}
-
-		protected void setForecastText(String forecastText) {
-			this.forecastText = forecastText;
-		}
-		
-	}
+    protected void setText(String text) {
+        this.text = text;
+    }
+}
