@@ -1,10 +1,13 @@
 package com.srmarlins.weather.network.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Jared on 9/6/2016.
  */
 
-public class Condition {
+public class Condition implements Parcelable {
     private String code;
     private String date;
     private String temp;
@@ -41,4 +44,39 @@ public class Condition {
     public void setTemp(String temp) {
         this.temp = temp;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.code);
+        dest.writeString(this.date);
+        dest.writeString(this.temp);
+        dest.writeString(this.text);
+    }
+
+    public Condition() {
+    }
+
+    protected Condition(Parcel in) {
+        this.code = in.readString();
+        this.date = in.readString();
+        this.temp = in.readString();
+        this.text = in.readString();
+    }
+
+    public static final Parcelable.Creator<Condition> CREATOR = new Parcelable.Creator<Condition>() {
+        @Override
+        public Condition createFromParcel(Parcel source) {
+            return new Condition(source);
+        }
+
+        @Override
+        public Condition[] newArray(int size) {
+            return new Condition[size];
+        }
+    };
 }
