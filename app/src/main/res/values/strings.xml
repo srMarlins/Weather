@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Weather</string>
+    <string name="activity_main_title">Yahoo Weather</string>
 </resources>
