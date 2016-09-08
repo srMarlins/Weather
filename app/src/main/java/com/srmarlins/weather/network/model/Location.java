@@ -8,9 +8,29 @@ import android.os.Parcelable;
  */
 
 public class Location implements Parcelable {
+    public static final Parcelable.Creator<Location> CREATOR = new Parcelable.Creator<Location>() {
+        @Override
+        public Location createFromParcel(Parcel source) {
+            return new Location(source);
+        }
+
+        @Override
+        public Location[] newArray(int size) {
+            return new Location[size];
+        }
+    };
     private String city;
     private String country;
     private String region;
+
+    public Location() {
+    }
+
+    protected Location(Parcel in) {
+        this.city = in.readString();
+        this.country = in.readString();
+        this.region = in.readString();
+    }
 
     public String getCity() {
         return city;
@@ -47,25 +67,4 @@ public class Location implements Parcelable {
         dest.writeString(this.country);
         dest.writeString(this.region);
     }
-
-    public Location() {
-    }
-
-    protected Location(Parcel in) {
-        this.city = in.readString();
-        this.country = in.readString();
-        this.region = in.readString();
-    }
-
-    public static final Parcelable.Creator<Location> CREATOR = new Parcelable.Creator<Location>() {
-        @Override
-        public Location createFromParcel(Parcel source) {
-            return new Location(source);
-        }
-
-        @Override
-        public Location[] newArray(int size) {
-            return new Location[size];
-        }
-    };
 }

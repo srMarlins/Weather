@@ -4,12 +4,35 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Forecast implements Parcelable {
+    public static final Parcelable.Creator<Forecast> CREATOR = new Parcelable.Creator<Forecast>() {
+        @Override
+        public Forecast createFromParcel(Parcel source) {
+            return new Forecast(source);
+        }
+
+        @Override
+        public Forecast[] newArray(int size) {
+            return new Forecast[size];
+        }
+    };
     private String date;
     private int code;
     private int high;
     private int low;
     private String forecastConditionIconURL;
     private String text;
+
+    public Forecast() {
+    }
+
+    protected Forecast(Parcel in) {
+        this.date = in.readString();
+        this.code = in.readInt();
+        this.high = in.readInt();
+        this.low = in.readInt();
+        this.forecastConditionIconURL = in.readString();
+        this.text = in.readString();
+    }
 
     public String getDate() {
         return date;
@@ -70,28 +93,4 @@ public class Forecast implements Parcelable {
         dest.writeString(this.forecastConditionIconURL);
         dest.writeString(this.text);
     }
-
-    public Forecast() {
-    }
-
-    protected Forecast(Parcel in) {
-        this.date = in.readString();
-        this.code = in.readInt();
-        this.high = in.readInt();
-        this.low = in.readInt();
-        this.forecastConditionIconURL = in.readString();
-        this.text = in.readString();
-    }
-
-    public static final Parcelable.Creator<Forecast> CREATOR = new Parcelable.Creator<Forecast>() {
-        @Override
-        public Forecast createFromParcel(Parcel source) {
-            return new Forecast(source);
-        }
-
-        @Override
-        public Forecast[] newArray(int size) {
-            return new Forecast[size];
-        }
-    };
 }

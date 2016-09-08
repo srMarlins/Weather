@@ -6,6 +6,17 @@ import android.os.Parcelable;
 
 public class WeatherInfo implements Parcelable {
 
+    public static final Parcelable.Creator<WeatherInfo> CREATOR = new Parcelable.Creator<WeatherInfo>() {
+        @Override
+        public WeatherInfo createFromParcel(Parcel source) {
+            return new WeatherInfo(source);
+        }
+
+        @Override
+        public WeatherInfo[] newArray(int size) {
+            return new WeatherInfo[size];
+        }
+    };
     private String title;
     private String description;
     private String language;
@@ -16,6 +27,20 @@ public class WeatherInfo implements Parcelable {
     private Astronomy astronomy;
     private WeatherItem item;
 
+    public WeatherInfo() {
+    }
+
+    protected WeatherInfo(Parcel in) {
+        this.title = in.readString();
+        this.description = in.readString();
+        this.language = in.readString();
+        this.lastBuildDate = in.readString();
+        this.location = in.readParcelable(Location.class.getClassLoader());
+        this.wind = in.readParcelable(Wind.class.getClassLoader());
+        this.atmosphere = in.readParcelable(Atmosphere.class.getClassLoader());
+        this.astronomy = in.readParcelable(Astronomy.class.getClassLoader());
+        this.item = in.readParcelable(WeatherItem.class.getClassLoader());
+    }
 
     public String getTitle() {
         return title;
@@ -106,31 +131,4 @@ public class WeatherInfo implements Parcelable {
         dest.writeParcelable(this.astronomy, flags);
         dest.writeParcelable(this.item, flags);
     }
-
-    public WeatherInfo() {
-    }
-
-    protected WeatherInfo(Parcel in) {
-        this.title = in.readString();
-        this.description = in.readString();
-        this.language = in.readString();
-        this.lastBuildDate = in.readString();
-        this.location = in.readParcelable(Location.class.getClassLoader());
-        this.wind = in.readParcelable(Wind.class.getClassLoader());
-        this.atmosphere = in.readParcelable(Atmosphere.class.getClassLoader());
-        this.astronomy = in.readParcelable(Astronomy.class.getClassLoader());
-        this.item = in.readParcelable(WeatherItem.class.getClassLoader());
-    }
-
-    public static final Parcelable.Creator<WeatherInfo> CREATOR = new Parcelable.Creator<WeatherInfo>() {
-        @Override
-        public WeatherInfo createFromParcel(Parcel source) {
-            return new WeatherInfo(source);
-        }
-
-        @Override
-        public WeatherInfo[] newArray(int size) {
-            return new WeatherInfo[size];
-        }
-    };
 }

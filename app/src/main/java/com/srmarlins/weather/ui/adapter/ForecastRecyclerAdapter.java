@@ -1,6 +1,5 @@
 package com.srmarlins.weather.ui.adapter;
 
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.srmarlins.weather.R;
 import com.srmarlins.weather.network.model.Forecast;
-import com.srmarlins.weather.network.model.WeatherInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +25,8 @@ import rx.subjects.PublishSubject;
 
 public class ForecastRecyclerAdapter extends RecyclerView.Adapter<ForecastRecyclerAdapter.ViewHolder> {
 
-    private List<Forecast> data = new ArrayList<>();
     private final PublishSubject<View> onClickSubject = PublishSubject.create();
+    private List<Forecast> data = new ArrayList<>();
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -42,7 +40,7 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter<ForecastRecycl
         forecast.setCode(forecast.getCode());
         Picasso.with(holder.itemView.getContext()).load(forecast.getForecastConditionIconURL()).into(holder.weatherImage);
         holder.high.setText(Integer.toString(forecast.getHigh()) + "\u00B0");
-        holder.low.setText(Integer.toString(forecast.getLow())+ "\u00B0");
+        holder.low.setText(Integer.toString(forecast.getLow()) + "\u00B0");
         holder.day.setText(forecast.getDate());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

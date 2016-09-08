@@ -13,6 +13,17 @@ import java.util.List;
  */
 
 public class WeatherItem implements Parcelable {
+    public static final Parcelable.Creator<WeatherItem> CREATOR = new Parcelable.Creator<WeatherItem>() {
+        @Override
+        public WeatherItem createFromParcel(Parcel source) {
+            return new WeatherItem(source);
+        }
+
+        @Override
+        public WeatherItem[] newArray(int size) {
+            return new WeatherItem[size];
+        }
+    };
     private String title;
     private String lat;
     @Json(name = "long")
@@ -20,6 +31,18 @@ public class WeatherItem implements Parcelable {
     private String pubDate;
     private Condition condition;
     private List<Forecast> forecast = new ArrayList<>();
+
+    public WeatherItem() {
+    }
+
+    protected WeatherItem(Parcel in) {
+        this.title = in.readString();
+        this.lat = in.readString();
+        this.lon = in.readString();
+        this.pubDate = in.readString();
+        this.condition = in.readParcelable(Condition.class.getClassLoader());
+        this.forecast = in.createTypedArrayList(Forecast.CREATOR);
+    }
 
     public String getTitle() {
         return title;
@@ -83,28 +106,4 @@ public class WeatherItem implements Parcelable {
         dest.writeParcelable(this.condition, flags);
         dest.writeTypedList(this.forecast);
     }
-
-    public WeatherItem() {
-    }
-
-    protected WeatherItem(Parcel in) {
-        this.title = in.readString();
-        this.lat = in.readString();
-        this.lon = in.readString();
-        this.pubDate = in.readString();
-        this.condition = in.readParcelable(Condition.class.getClassLoader());
-        this.forecast = in.createTypedArrayList(Forecast.CREATOR);
-    }
-
-    public static final Parcelable.Creator<WeatherItem> CREATOR = new Parcelable.Creator<WeatherItem>() {
-        @Override
-        public WeatherItem createFromParcel(Parcel source) {
-            return new WeatherItem(source);
-        }
-
-        @Override
-        public WeatherItem[] newArray(int size) {
-            return new WeatherItem[size];
-        }
-    };
 }

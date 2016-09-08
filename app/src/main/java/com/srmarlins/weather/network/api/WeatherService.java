@@ -2,7 +2,6 @@ package com.srmarlins.weather.network.api;
 
 import com.srmarlins.weather.network.model.WeatherResponseWrapper;
 
-
 import retrofit2.adapter.rxjava.Result;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

@@ -7,8 +7,6 @@ import com.srmarlins.weather.network.model.WeatherInfo;
 import com.srmarlins.weather.network.model.WeatherResponse;
 import com.srmarlins.weather.network.model.WeatherResponseWrapper;
 
-import java.util.Observable;
-
 import javax.inject.Inject;
 
 import retrofit2.adapter.rxjava.Result;
@@ -48,15 +46,15 @@ public class WeatherManager {
                     @Override
                     public void onNext(Result<WeatherResponseWrapper> weatherResult) {
                         WeatherResponseWrapper wrapper = weatherResult.response().body();
-                        if(wrapper == null) {
+                        if (wrapper == null) {
                             return;
                         }
                         WeatherResponse weatherResponse = wrapper.getQuery();
-                        if(weatherResponse == null) {
+                        if (weatherResponse == null) {
                             return;
                         }
                         com.srmarlins.weather.network.model.Result result = weatherResponse.getResults();
-                        if(result == null) {
+                        if (result == null) {
                             return;
                         }
                         WeatherInfo weatherInfo = result.getWeatherInfo();

@@ -8,10 +8,31 @@ import android.os.Parcelable;
  */
 
 public class Condition implements Parcelable {
+    public static final Parcelable.Creator<Condition> CREATOR = new Parcelable.Creator<Condition>() {
+        @Override
+        public Condition createFromParcel(Parcel source) {
+            return new Condition(source);
+        }
+
+        @Override
+        public Condition[] newArray(int size) {
+            return new Condition[size];
+        }
+    };
     private String code;
     private String date;
     private String temp;
     private String text;
+
+    public Condition() {
+    }
+
+    protected Condition(Parcel in) {
+        this.code = in.readString();
+        this.date = in.readString();
+        this.temp = in.readString();
+        this.text = in.readString();
+    }
 
     public String getCode() {
         return code;
@@ -57,26 +78,4 @@ public class Condition implements Parcelable {
         dest.writeString(this.temp);
         dest.writeString(this.text);
     }
-
-    public Condition() {
-    }
-
-    protected Condition(Parcel in) {
-        this.code = in.readString();
-        this.date = in.readString();
-        this.temp = in.readString();
-        this.text = in.readString();
-    }
-
-    public static final Parcelable.Creator<Condition> CREATOR = new Parcelable.Creator<Condition>() {
-        @Override
-        public Condition createFromParcel(Parcel source) {
-            return new Condition(source);
-        }
-
-        @Override
-        public Condition[] newArray(int size) {
-            return new Condition[size];
-        }
-    };
 }

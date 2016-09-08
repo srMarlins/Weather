@@ -3,7 +3,6 @@ package com.srmarlins.weather.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +19,7 @@ import butterknife.BindView;
  * Created by Jared on 9/6/2016.
  */
 
-public class DetailActivity extends BaseActivity implements ForecastBarFragment.ForecastDetailListener{
+public class DetailActivity extends BaseActivity implements ForecastBarFragment.ForecastDetailListener {
 
     public static final String WEATHER_TAG = "weather_tag";
 
@@ -41,7 +40,7 @@ public class DetailActivity extends BaseActivity implements ForecastBarFragment.
     private Forecast currentForecast;
 
     public static Intent newIntent(Context context, WeatherInfo weatherInfo) {
-        Intent intent =  new Intent(context, DetailActivity.class);
+        Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra(WEATHER_TAG, weatherInfo);
         return intent;
     }
@@ -52,14 +51,14 @@ public class DetailActivity extends BaseActivity implements ForecastBarFragment.
         setContentView(R.layout.activity_detail);
 
         Bundle extras = getIntent().getExtras();
-        if(extras != null) {
+        if (extras != null) {
             weatherInfo = extras.getParcelable(WEATHER_TAG);
             currentForecast = weatherInfo.getItem().getForecast().get(0);
             updateViews();
         }
 
         forecastBarFragment = (ForecastBarFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_bottom);
-        if(forecastBarFragment != null && weatherInfo != null) {
+        if (forecastBarFragment != null && weatherInfo != null) {
             forecastBarFragment.updateForecastDetails(weatherInfo.getItem().getForecast());
             setTitle(weatherInfo.getLocation().getCity());
         }

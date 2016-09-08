@@ -53,7 +53,7 @@ public class ForecastBarFragment extends Fragment {
         ButterKnife.bind(this, view);
         adapter = new ForecastRecyclerAdapter();
         Bundle args = getArguments();
-        if(args != null) {
+        if (args != null) {
             ArrayList<Forecast> forecasts = getArguments().getParcelableArrayList(FORECAST_TAG);
             adapter.setData(forecasts);
         }

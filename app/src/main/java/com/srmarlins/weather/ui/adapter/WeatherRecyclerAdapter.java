@@ -26,8 +26,8 @@ import rx.subjects.PublishSubject;
 
 public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherRecyclerAdapter.ViewHolder> {
 
-    private List<WeatherInfo> data = new ArrayList<>();
     private final PublishSubject<View> onClickSubject = PublishSubject.create();
+    private List<WeatherInfo> data = new ArrayList<>();
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

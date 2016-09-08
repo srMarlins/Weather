@@ -9,9 +9,29 @@ import android.os.Parcelable;
 
 public class Wind implements Parcelable {
 
+    public static final Parcelable.Creator<Wind> CREATOR = new Parcelable.Creator<Wind>() {
+        @Override
+        public Wind createFromParcel(Parcel source) {
+            return new Wind(source);
+        }
+
+        @Override
+        public Wind[] newArray(int size) {
+            return new Wind[size];
+        }
+    };
     private String chill;
     private String direction;
     private String speed;
+
+    public Wind() {
+    }
+
+    protected Wind(Parcel in) {
+        this.chill = in.readString();
+        this.direction = in.readString();
+        this.speed = in.readString();
+    }
 
     public String getChill() {
         return chill;
@@ -48,25 +68,4 @@ public class Wind implements Parcelable {
         dest.writeString(this.direction);
         dest.writeString(this.speed);
     }
-
-    public Wind() {
-    }
-
-    protected Wind(Parcel in) {
-        this.chill = in.readString();
-        this.direction = in.readString();
-        this.speed = in.readString();
-    }
-
-    public static final Parcelable.Creator<Wind> CREATOR = new Parcelable.Creator<Wind>() {
-        @Override
-        public Wind createFromParcel(Parcel source) {
-            return new Wind(source);
-        }
-
-        @Override
-        public Wind[] newArray(int size) {
-            return new Wind[size];
-        }
-    };
 }

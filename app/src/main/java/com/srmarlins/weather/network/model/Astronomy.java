@@ -8,8 +8,27 @@ import android.os.Parcelable;
  */
 
 public class Astronomy implements Parcelable {
+    public static final Parcelable.Creator<Astronomy> CREATOR = new Parcelable.Creator<Astronomy>() {
+        @Override
+        public Astronomy createFromParcel(Parcel source) {
+            return new Astronomy(source);
+        }
+
+        @Override
+        public Astronomy[] newArray(int size) {
+            return new Astronomy[size];
+        }
+    };
     private String sunset;
     private String sunrise;
+
+    public Astronomy() {
+    }
+
+    protected Astronomy(Parcel in) {
+        this.sunset = in.readString();
+        this.sunrise = in.readString();
+    }
 
     public String getSunset() {
         return sunset;
@@ -37,24 +56,4 @@ public class Astronomy implements Parcelable {
         dest.writeString(this.sunset);
         dest.writeString(this.sunrise);
     }
-
-    public Astronomy() {
-    }
-
-    protected Astronomy(Parcel in) {
-        this.sunset = in.readString();
-        this.sunrise = in.readString();
-    }
-
-    public static final Parcelable.Creator<Astronomy> CREATOR = new Parcelable.Creator<Astronomy>() {
-        @Override
-        public Astronomy createFromParcel(Parcel source) {
-            return new Astronomy(source);
-        }
-
-        @Override
-        public Astronomy[] newArray(int size) {
-            return new Astronomy[size];
-        }
-    };
 }

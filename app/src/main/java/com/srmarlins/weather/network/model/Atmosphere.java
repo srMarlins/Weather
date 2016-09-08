@@ -8,9 +8,29 @@ import android.os.Parcelable;
  */
 
 public class Atmosphere implements Parcelable {
+    public static final Parcelable.Creator<Atmosphere> CREATOR = new Parcelable.Creator<Atmosphere>() {
+        @Override
+        public Atmosphere createFromParcel(Parcel source) {
+            return new Atmosphere(source);
+        }
+
+        @Override
+        public Atmosphere[] newArray(int size) {
+            return new Atmosphere[size];
+        }
+    };
     private String humidity;
     private String pressure;
     private String visibility;
+
+    public Atmosphere() {
+    }
+
+    protected Atmosphere(Parcel in) {
+        this.humidity = in.readString();
+        this.pressure = in.readString();
+        this.visibility = in.readString();
+    }
 
     public String getHumidity() {
         return humidity;
@@ -47,25 +67,4 @@ public class Atmosphere implements Parcelable {
         dest.writeString(this.pressure);
         dest.writeString(this.visibility);
     }
-
-    public Atmosphere() {
-    }
-
-    protected Atmosphere(Parcel in) {
-        this.humidity = in.readString();
-        this.pressure = in.readString();
-        this.visibility = in.readString();
-    }
-
-    public static final Parcelable.Creator<Atmosphere> CREATOR = new Parcelable.Creator<Atmosphere>() {
-        @Override
-        public Atmosphere createFromParcel(Parcel source) {
-            return new Atmosphere(source);
-        }
-
-        @Override
-        public Atmosphere[] newArray(int size) {
-            return new Atmosphere[size];
-        }
-    };
 }

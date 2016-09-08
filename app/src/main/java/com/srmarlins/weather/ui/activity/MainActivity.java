@@ -132,7 +132,7 @@ public class MainActivity extends BaseActivity {
                     lastCall = weatherManager.getWeather(place.getLatLng(), weatherSubscriber);
                 }
             }
-            if(menuItem != null) {
+            if (menuItem != null) {
                 menuItem.setEnabled(true);
             }
         }
