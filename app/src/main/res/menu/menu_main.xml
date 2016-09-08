@@ -4,7 +4,7 @@
     tools:context=".ui.activity.MainActivity">
     <item
         android:id="@+id/menu_search"
-        android:icon="@drawable/places_ic_search"
+        android:icon="@android:drawable/ic_menu_add"
         android:title="Search"
         app:showAsAction="always" />
 </menu>

@@ -1,5 +1,6 @@
 package com.srmarlins.weather.ui.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +38,7 @@ public class BaseActivity extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(layoutResId, null);
         container.addView(view);
         ButterKnife.bind(this);
+        toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
     }
 
