@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    tools:context="com.srmarlins.weather.ui.MainActivity">
+    tools:context="com.srmarlins.weather.ui.activity.MainActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_weather_cards"

@@ -1,6 +1,6 @@
 package com.srmarlins.weather.dagger;
 
-import com.srmarlins.weather.ui.MainActivity;
+import com.srmarlins.weather.ui.activity.MainActivity;
 
 import javax.inject.Singleton;
 

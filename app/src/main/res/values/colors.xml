@@ -3,5 +3,6 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="transparentPurple">#773f51B5</color>
+    <color name="transparentPurple_light">#773f51B5</color>
+    <color name="transparentPurple_dark">#EE3f51B5</color>
 </resources>

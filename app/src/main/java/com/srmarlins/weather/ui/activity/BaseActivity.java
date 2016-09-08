@@ -1,4 +1,4 @@
-package com.srmarlins.weather.ui;
+package com.srmarlins.weather.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;

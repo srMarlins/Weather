@@ -1,18 +1,14 @@
-package com.srmarlins.weather.ui;
+package com.srmarlins.weather.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.srmarlins.weather.R;
 import com.srmarlins.weather.dagger.DaggerWeatherComponent;
@@ -22,9 +18,6 @@ import com.srmarlins.weather.network.WeatherManager;
 import com.srmarlins.weather.network.model.WeatherInfo;
 import com.srmarlins.weather.ui.adapter.WeatherRecyclerAdapter;
 import com.srmarlins.weather.util.PlacesUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -100,7 +93,8 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onNext(View view) {
-
+                WeatherInfo info = (WeatherInfo) view.getTag(WeatherRecyclerAdapter.VIEW_KEY);
+                startActivity(DetailActivity.newIntent(MainActivity.this, info));
             }
         });
     }
