@@ -2,6 +2,8 @@ package com.srmarlins.weather.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -94,7 +96,12 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onNext(View view) {
                 WeatherInfo info = (WeatherInfo) view.getTag();
-                startActivity(DetailActivity.newIntent(MainActivity.this, info));
+                Intent intent = DetailActivity.newIntent(MainActivity.this, info);
+                Pair<View, String> p1 = Pair.create(view.findViewById(R.id.weather_image), "weather_image");
+                Pair<View, String> p2 = Pair.create(view.findViewById(R.id.textView_weather_type), "weather_text");
+                Pair<View, String> p3 = Pair.create(view.findViewById(R.id.textView_degrees), "high");
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this, p1, p2, p3);
+                startActivity(DetailActivity.newIntent(MainActivity.this, info), optionsCompat.toBundle());
             }
         });
     }
