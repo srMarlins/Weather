@@ -15,6 +15,7 @@ import com.srmarlins.weather.network.model.Forecast;
 import com.srmarlins.weather.ui.adapter.ForecastRecyclerAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,10 +51,13 @@ public class ForecastBarFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_forecast_bar, container, false);
         ButterKnife.bind(this, view);
-        ArrayList<Forecast> forecasts = getArguments().getParcelableArrayList(FORECAST_TAG);
         adapter = new ForecastRecyclerAdapter();
-        adapter.setData(forecasts);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        Bundle args = getArguments();
+        if(args != null) {
+            ArrayList<Forecast> forecasts = getArguments().getParcelableArrayList(FORECAST_TAG);
+            adapter.setData(forecasts);
+        }
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(adapter);
         positionClickListener = adapter.getPositionClicks();
         positionClickListener.subscribe(new Subscriber<View>() {
@@ -82,6 +86,11 @@ public class ForecastBarFragment extends Fragment {
         if (context instanceof ForecastDetailListener) {
             forecastDetailListener = (ForecastDetailListener) context;
         }
+    }
+
+    public void updateForecastDetails(List<Forecast> forecastDetails) {
+        this.adapter.setData(forecastDetails);
+        this.adapter.notifyDataSetChanged();
     }
 
     public interface ForecastDetailListener {

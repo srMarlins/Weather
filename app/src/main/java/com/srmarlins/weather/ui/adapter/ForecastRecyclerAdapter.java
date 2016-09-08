@@ -1,5 +1,6 @@
 package com.srmarlins.weather.ui.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,23 +26,23 @@ import rx.subjects.PublishSubject;
  */
 
 public class ForecastRecyclerAdapter extends RecyclerView.Adapter<ForecastRecyclerAdapter.ViewHolder> {
-    public static final int VIEW_KEY = 1;
 
     private List<Forecast> data = new ArrayList<>();
     private final PublishSubject<View> onClickSubject = PublishSubject.create();
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_weather_card, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_forecast, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Forecast forecast = data.get(position);
+        forecast.setCode(forecast.getCode());
         Picasso.with(holder.itemView.getContext()).load(forecast.getForecastConditionIconURL()).into(holder.weatherImage);
-        holder.high.setText(forecast.getHigh());
-        holder.low.setText(forecast.getLow());
+        holder.high.setText(Integer.toString(forecast.getHigh()) + "\u00B0");
+        holder.low.setText(Integer.toString(forecast.getLow())+ "\u00B0");
         holder.day.setText(forecast.getDate());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

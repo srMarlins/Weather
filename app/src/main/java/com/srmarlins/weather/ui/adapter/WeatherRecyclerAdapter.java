@@ -25,7 +25,6 @@ import rx.subjects.PublishSubject;
  */
 
 public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherRecyclerAdapter.ViewHolder> {
-    public static final int VIEW_KEY = 1;
 
     private List<WeatherInfo> data = new ArrayList<>();
     private final PublishSubject<View> onClickSubject = PublishSubject.create();
@@ -40,7 +39,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherRecycler
     public void onBindViewHolder(ViewHolder holder, int position) {
         final WeatherInfo info = data.get(position);
         Forecast forecast = info.getItem().getForecast().get(0);
-        holder.degrees.setText(info.getItem().getCondition().getTemp());
+        holder.degrees.setText(info.getItem().getCondition().getTemp() + "\u00B0");
         holder.humidity.setText(info.getAtmosphere().getHumidity());
         holder.pressure.setText(info.getAtmosphere().getPressure());
         forecast.setCode(forecast.getCode());
@@ -51,7 +50,7 @@ public class WeatherRecyclerAdapter extends RecyclerView.Adapter<WeatherRecycler
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                v.setTag(VIEW_KEY, info);
+                v.setTag(info);
                 onClickSubject.onNext(v);
             }
         });

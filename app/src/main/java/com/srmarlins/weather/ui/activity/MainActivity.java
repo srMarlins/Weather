@@ -93,7 +93,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onNext(View view) {
-                WeatherInfo info = (WeatherInfo) view.getTag(WeatherRecyclerAdapter.VIEW_KEY);
+                WeatherInfo info = (WeatherInfo) view.getTag();
                 startActivity(DetailActivity.newIntent(MainActivity.this, info));
             }
         });
