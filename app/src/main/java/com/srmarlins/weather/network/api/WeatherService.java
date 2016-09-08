@@ -1,7 +1,6 @@
 package com.srmarlins.weather.network.api;
 
-import com.srmarlins.weather.network.model.WeatherInfo;
-
+import com.srmarlins.weather.network.model.WeatherResponseWrapper;
 
 import retrofit2.adapter.rxjava.Result;
 import retrofit2.http.GET;
@@ -16,5 +15,5 @@ public interface WeatherService {
     String WEATHER = "/v1/public/yql";
 
     @GET(WEATHER)
-    Observable<Result<WeatherInfo>> getWeather(@Query("q") String query);
+    Observable<Result<WeatherResponseWrapper>> getWeather(@Query("q") String query, @Query("format") String format);
 }

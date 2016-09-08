@@ -1,261 +1,134 @@
 package com.srmarlins.weather.network.model;
 
-import android.graphics.Bitmap;
-import android.location.Address;
 
-import java.util.ArrayList;
-import java.util.List;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class WeatherInfo {
+public class WeatherInfo implements Parcelable {
 
-	private String title;
-	private String description;
-	private String language;
-	private String lastBuildDate;
-	private String locationCity;
-	private String locationRegion;
-	private String locationCountry;
-	private String windChill;
-	private String windDirection;
-	private String windSpeed = "";
-	private String atmosphereHumidity = "";
-	private String atmosphereVisibility = "";
-	private String atmospherePressure = "";
-	private String atmosphereRising = "";
-	private String astronomySunrise = "";
-	private String astronomySunset = "";
-	private String conditionTitle = "";
-	private String conditionLat = "";
-	private String conditionLon = "";
-	private int currentCode = 0;
-	private String currentText = "";
-	private int currentTemp = 0;
-	private String currentConditionIconURL = "";
-	private Bitmap currentConditionIcon = null;
-	private String currentConditionDate = "";
-	private List<Forecast> forecastList = new ArrayList<>();
-	private Address address = null;
-	
-	public WeatherInfo() {
-		
-	}
+    public static final Parcelable.Creator<WeatherInfo> CREATOR = new Parcelable.Creator<WeatherInfo>() {
+        @Override
+        public WeatherInfo createFromParcel(Parcel source) {
+            return new WeatherInfo(source);
+        }
 
-	public String getTitle() {
-		return title;
-	}
+        @Override
+        public WeatherInfo[] newArray(int size) {
+            return new WeatherInfo[size];
+        }
+    };
+    private String title;
+    private String description;
+    private String language;
+    private String lastBuildDate;
+    private Location location;
+    private Wind wind;
+    private Atmosphere atmosphere;
+    private Astronomy astronomy;
+    private WeatherItem item;
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+    public WeatherInfo() {
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    protected WeatherInfo(Parcel in) {
+        this.title = in.readString();
+        this.description = in.readString();
+        this.language = in.readString();
+        this.lastBuildDate = in.readString();
+        this.location = in.readParcelable(Location.class.getClassLoader());
+        this.wind = in.readParcelable(Wind.class.getClassLoader());
+        this.atmosphere = in.readParcelable(Atmosphere.class.getClassLoader());
+        this.astronomy = in.readParcelable(Astronomy.class.getClassLoader());
+        this.item = in.readParcelable(WeatherItem.class.getClassLoader());
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public String getLanguage() {
-		return language;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setLanguage(String language) {
-		this.language = language;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public String getLastBuildDate() {
-		return lastBuildDate;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setLastBuildDate(String lastBuildDate) {
-		this.lastBuildDate = lastBuildDate;
-	}
+    public String getLanguage() {
+        return language;
+    }
 
-	public String getLocationCity() {
-		return locationCity;
-	}
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 
-	public void setLocationCity(String locationCity) {
-		this.locationCity = locationCity;
-	}
+    public String getLastBuildDate() {
+        return lastBuildDate;
+    }
 
-	public String getLocationRegion() {
-		return locationRegion;
-	}
+    public void setLastBuildDate(String lastBuildDate) {
+        this.lastBuildDate = lastBuildDate;
+    }
 
-	public void setLocationRegion(String locationRegion) {
-		this.locationRegion = locationRegion;
-	}
+    public Location getLocation() {
+        return location;
+    }
 
-	public String getLocationCountry() {
-		return locationCountry;
-	}
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
-	public void setLocationCountry(String locationCountry) {
-		this.locationCountry = locationCountry;
-	}
+    public Wind getWind() {
+        return wind;
+    }
 
-	public String getWindChill() {
-		return windChill;
-	}
+    public void setWind(Wind wind) {
+        this.wind = wind;
+    }
 
-	public void setWindChill(String windChill) {
-		this.windChill = windChill;
-	}
+    public Atmosphere getAtmosphere() {
+        return atmosphere;
+    }
 
-	public String getWindDirection() {
-		return windDirection;
-	}
+    public void setAtmosphere(Atmosphere atmosphere) {
+        this.atmosphere = atmosphere;
+    }
 
-	public void setWindDirection(String windDirection) {
-		this.windDirection = windDirection;
-	}
+    public Astronomy getAstronomy() {
+        return astronomy;
+    }
 
-	public String getWindSpeed() {
-		return windSpeed;
-	}
+    public void setAstronomy(Astronomy astronomy) {
+        this.astronomy = astronomy;
+    }
 
-	public void setWindSpeed(String windSpeed) {
-		this.windSpeed = windSpeed;
-	}
+    public WeatherItem getItem() {
+        return item;
+    }
 
-	public String getAtmosphereHumidity() {
-		return atmosphereHumidity;
-	}
+    public void setItem(WeatherItem item) {
+        this.item = item;
+    }
 
-	public void setAtmosphereHumidity(String atmosphereHumidity) {
-		this.atmosphereHumidity = atmosphereHumidity;
-	}
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-	public String getAtmosphereVisibility() {
-		return atmosphereVisibility;
-	}
-
-	public void setAtmosphereVisibility(String atmosphereVisibility) {
-		this.atmosphereVisibility = atmosphereVisibility;
-	}
-
-	public String getAtmospherePressure() {
-		return atmospherePressure;
-	}
-
-	public void setAtmospherePressure(String atmospherePressure) {
-		this.atmospherePressure = atmospherePressure;
-	}
-
-	public String getAtmosphereRising() {
-		return atmosphereRising;
-	}
-
-	public void setAtmosphereRising(String atmosphereRising) {
-		this.atmosphereRising = atmosphereRising;
-	}
-
-	public String getAstronomySunrise() {
-		return astronomySunrise;
-	}
-
-	public void setAstronomySunrise(String astronomySunrise) {
-		this.astronomySunrise = astronomySunrise;
-	}
-
-	public String getAstronomySunset() {
-		return astronomySunset;
-	}
-
-	public void setAstronomySunset(String astronomySunset) {
-		this.astronomySunset = astronomySunset;
-	}
-
-	public String getConditionTitle() {
-		return conditionTitle;
-	}
-
-	public void setConditionTitle(String conditionTitle) {
-		this.conditionTitle = conditionTitle;
-	}
-
-	public String getConditionLat() {
-		return conditionLat;
-	}
-
-	public void setConditionLat(String conditionLat) {
-		this.conditionLat = conditionLat;
-	}
-
-	public String getConditionLon() {
-		return conditionLon;
-	}
-
-	public void setConditionLon(String conditionLon) {
-		this.conditionLon = conditionLon;
-	}
-
-	public int getCurrentCode() {
-		return currentCode;
-	}
-
-	public void setCurrentCode(int currentCode) {
-		currentCode = currentCode;
-		currentConditionIconURL = "http://l.yimg.com/a/i/us/we/52/" + currentCode + ".gif";
-	}
-
-	public String getCurrentText() {
-		return currentText;
-	}
-
-	public void setCurrentText(String currentText) {
-		this.currentText = currentText;
-	}
-
-	public int getCurrentTemp() {
-		return currentTemp;
-	}
-
-	public void setCurrentTemp(int currentTemp) {
-		this.currentTemp = currentTemp;
-	}
-
-	public String getCurrentConditionIconURL() {
-		return currentConditionIconURL;
-	}
-
-	public void setCurrentConditionIconURL(String currentConditionIconURL) {
-		this.currentConditionIconURL = currentConditionIconURL;
-	}
-
-	public Bitmap getCurrentConditionIcon() {
-		return currentConditionIcon;
-	}
-
-	public void setCurrentConditionIcon(Bitmap currentConditionIcon) {
-		this.currentConditionIcon = currentConditionIcon;
-	}
-
-	public String getCurrentConditionDate() {
-		return currentConditionDate;
-	}
-
-	public void setCurrentConditionDate(String currentConditionDate) {
-		this.currentConditionDate = currentConditionDate;
-	}
-
-	public List<Forecast> getForecastList() {
-		return forecastList;
-	}
-
-	public void setForecastList(List<Forecast> forecastList) {
-		this.forecastList = forecastList;
-	}
-
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.title);
+        dest.writeString(this.description);
+        dest.writeString(this.language);
+        dest.writeString(this.lastBuildDate);
+        dest.writeParcelable(this.location, flags);
+        dest.writeParcelable(this.wind, flags);
+        dest.writeParcelable(this.atmosphere, flags);
+        dest.writeParcelable(this.astronomy, flags);
+        dest.writeParcelable(this.item, flags);
+    }
 }

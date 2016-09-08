@@ -1,76 +1,96 @@
 package com.srmarlins.weather.network.model;
 
-import android.graphics.Bitmap;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Forecast {
-	private String forecastDay;
-		private String forecastDate;
-		private int forecastCode;
-		private int forecastTempHigh;
-		private int forecastTempLow;
-		private String forecastConditionIconURL;
-		private Bitmap forecastConditionIcon;
-		private String forecastText;
+public class Forecast implements Parcelable {
+    public static final Parcelable.Creator<Forecast> CREATOR = new Parcelable.Creator<Forecast>() {
+        @Override
+        public Forecast createFromParcel(Parcel source) {
+            return new Forecast(source);
+        }
 
-		public Bitmap getForecastConditionIcon() {
-			return forecastConditionIcon;
-		}
+        @Override
+        public Forecast[] newArray(int size) {
+            return new Forecast[size];
+        }
+    };
+    private String date;
+    private int code;
+    private int high;
+    private int low;
+    private String forecastConditionIconURL;
+    private String text;
 
-		protected void setForecastConditionIcon(Bitmap forecastConditionIcon) {
-			this.forecastConditionIcon = forecastConditionIcon;
-		}
+    public Forecast() {
+    }
 
-		public String getForecastDay() {
-			return forecastDay;
-		}
+    protected Forecast(Parcel in) {
+        this.date = in.readString();
+        this.code = in.readInt();
+        this.high = in.readInt();
+        this.low = in.readInt();
+        this.forecastConditionIconURL = in.readString();
+        this.text = in.readString();
+    }
 
-		protected void setForecastDay(String forecastDay) {
-			this.forecastDay = forecastDay;
-		}
+    public String getDate() {
+        return date;
+    }
 
-		public String getForecastDate() {
-			return forecastDate;
-		}
+    protected void setDate(String date) {
+        this.date = date;
+    }
 
-		protected void setForecastDate(String forecastDate) {
-			this.forecastDate = forecastDate;
-		}
+    public int getCode() {
+        return code;
+    }
 
-		public int getForecastCode() {
-			return forecastCode;
-		}
+    public void setCode(int code) {
+        this.code = code;
+        forecastConditionIconURL = "http://l.yimg.com/a/i/us/we/52/" + code + ".gif";
+    }
 
-		protected void setForecastCode(int forecastCode) {
-			this.forecastCode = forecastCode;
-			forecastConditionIconURL = "http://l.yimg.com/a/i/us/we/52/" + forecastCode + ".gif";
-		}
+    public int getHigh() {
+        return high;
+    }
 
-		public int getForecastTempHigh() {
-			return forecastTempHigh;
-		}
+    protected void setHigh(int high) {
+        this.high = high;
+    }
 
-		protected void setForecastTempHigh(int forecastTempHigh) {
-			this.forecastTempHigh = forecastTempHigh;
-		}
+    public int getLow() {
+        return low;
+    }
 
-		public int getForecastTempLow() {
-			return forecastTempLow;
-		}
+    protected void setLow(int low) {
+        this.low = low;
+    }
 
-		protected void setForecastTempLow(int forecastTempLow) {
-			this.forecastTempLow = forecastTempLow;
-		}
+    public String getForecastConditionIconURL() {
+        return forecastConditionIconURL;
+    }
 
-		public String getForecastConditionIconURL() {
-			return forecastConditionIconURL;
-		}
+    public String getText() {
+        return text;
+    }
 
-		public String getForecastText() {
-			return forecastText;
-		}
+    protected void setText(String text) {
+        this.text = text;
+    }
 
-		protected void setForecastText(String forecastText) {
-			this.forecastText = forecastText;
-		}
-		
-	}
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.date);
+        dest.writeInt(this.code);
+        dest.writeInt(this.high);
+        dest.writeInt(this.low);
+        dest.writeString(this.forecastConditionIconURL);
+        dest.writeString(this.text);
+    }
+}

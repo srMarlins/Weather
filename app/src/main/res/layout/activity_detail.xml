@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparentPurple_dark">
+
+
+    <fragment
+        android:id="@+id/fragment_bottom"
+        android:name="com.srmarlins.weather.ui.fragment.ForecastBarFragment"
+        android:layout_width="384dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout="@layout/fragment_forecast_bar" />
+
+    <ImageView
+        android:id="@+id/imageView_background"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:alpha=".5"
+        android:gravity="bottom"
+        android:scaleType="fitEnd"
+        android:tint="@color/transparentPurple_light"
+        app:layout_constraintBottom_toTopOf="@+id/textView_desc"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/skyline" />
+
+    <TextView
+        android:id="@+id/textView_high"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="@android:color/white"
+        android:textSize="60sp"
+        app:layout_constraintHorizontal_bias="0.37"
+        app:layout_constraintLeft_toLeftOf="@+id/imageView_background"
+        app:layout_constraintRight_toRightOf="@+id/imageView_background"
+        app:layout_constraintTop_toBottomOf="@+id/textView_date"
+        tools:text="-8\u00B0" />
+
+    <TextView
+        android:id="@+id/textView_desc"
+        android:layout_width="384dp"
+        android:layout_height="55dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/transparentPurple_dark"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_bottom"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="Here's some sample text" />
+
+    <ImageView
+        android:id="@+id/imageView_weather"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_low"
+        app:layout_constraintLeft_toRightOf="@+id/textView_high"
+        app:layout_constraintTop_toTopOf="@+id/textView_high"
+        app:srcCompat="@drawable/places_ic_search" />
+
+    <TextView
+        android:id="@+id/textView_low"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="TextView"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintRight_toLeftOf="@+id/imageView_weather"
+        app:layout_constraintTop_toBottomOf="@+id/textView_high" />
+
+    <TextView
+        android:id="@+id/textView_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Wednesday September 7th, 2016" />
+
+</android.support.constraint.ConstraintLayout>
